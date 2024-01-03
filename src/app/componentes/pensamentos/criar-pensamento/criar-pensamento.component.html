@@ -64,10 +64,11 @@
                     <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
                 </div>
             </div>
-            <div class="acoes">
-                <button (click)="criarPensamento()" class="botao">Salvar</button>
-                <button (click)="cancelar()" class="botao">Cancelar</button>
-            </div>
+        
+        </div>
+        <div class="acoes">
+            <button (click)="criarPensamento()" class="botao">Salvar</button>
+            <button (click)="cancelar()" routerLink="/listarPensamento" class="botao">Cancelar</button>
         </div>
     </form>
 </section>

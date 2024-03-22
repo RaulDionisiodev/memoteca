@@ -19,20 +19,26 @@ export class ListarPensamentoComponent implements OnInit {
   ngOnInit(): void {
     //Toda lógica que deve ser realizada no ato do carregamento do componente vem nessa função
     
-    this.service.listar(this.paginaAtual).subscribe((listaPensamentos) => {
+    this.service.listar(this.paginaAtual, this.filtro).subscribe((listaPensamentos) => {
       this.listaPensamentos = listaPensamentos
     })
   }
 
   carregarMaisPensamentos() : void {
-    console.log("clicado")
-    this.service.listar(++this.paginaAtual)
+    this.service.listar(++this.paginaAtual, this.filtro)
     .subscribe(listaPensamentos => {
         this.listaPensamentos.push(...listaPensamentos)
         if (!listaPensamentos.length) {
           this.haMaisPensamentos = false
         }
     })
+  }
+
+  pesquisarPensamentos() {
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.service.listar(this.paginaAtual, this.filtro)
+       .subscribe(listaPensamentos => this.listaPensamentos = listaPensamentos)
   }
 
 }
